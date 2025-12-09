@@ -7,9 +7,16 @@ $fecha=date("d/m/Y H:i:s");
 //valor no es NULL. La función isset devuelve true si la variable está
 //definida y no es nula
 if(isset($_COOKIE["visita"])){
-    //aquí va el código se debéis de programar
 
-}else{
+    list($numVisites, $ultimaVisita) = explode("|", $_COOKIE["visita"]);
+    $numVisites++;
+
+    print "<h2> Hola de nou, és la visita número: $numVisites. </h2>";
+    print "<h3> Última visita: $ultimaVisita. </h3>";
+
+    setcookie("visita", $numVisites . "|" . $fecha);
+
+} else{
     print "<h2> Hola, aquesta és la primera vegada que entres en aquesta pàgina. </h2>";
     setcookie("visita","1|" . $fecha);
 }
